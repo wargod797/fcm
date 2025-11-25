@@ -10,13 +10,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class BookingServiceImpl implements BookingService {
 
     private final FlightService flightService;
     private final List<Booking> bookings = new ArrayList<>();
-    private final Long idGenerator = Long.valueOf(1);
+    private final AtomicLong idGenerator = new AtomicLong(1);
 
     public BookingServiceImpl(FlightService flightService) {
         this.flightService = flightService;
@@ -44,7 +45,7 @@ public class BookingServiceImpl implements BookingService {
 
         // 5. Create booking object
         Booking booking = new Booking(
-                idGenerator,
+                idGenerator.getAndIncrement(),
                 request.getCustomerName(),
                 request.getFlightId(),
                 request.getSeats(),
