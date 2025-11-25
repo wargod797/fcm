@@ -20,7 +20,7 @@ class FlightControllerTest {
 
     @Test
     void searchFlights_shouldReturnOkAndList() throws Exception {
-        mockMvc.perform(get("/flights/search")
+        mockMvc.perform(get("/flight/search")
                         .param("from", "BLR")
                         .param("to", "DEL")
                         .param("date", "2025-02-01"))
