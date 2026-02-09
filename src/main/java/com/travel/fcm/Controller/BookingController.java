@@ -34,6 +34,8 @@ public class BookingController {
                 booking.getFlightId()
         );
 
+        System.out.println("Booking created with ID: " + booking.getId() + " and status: " + booking.getStatus());
+
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 }
